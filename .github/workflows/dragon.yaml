@@ -16,12 +16,7 @@ jobs:
 
       
 
-      # Step 3: Make the script executable inside WSL
-      - name: Make dragon.sh executable
-        run: wsl -d Ubuntu "chmod +x ${{ github.workspace }}/dragon.sh"
-        shell: powershell
-
-      # Step 4: Run the script inside WSL
-      - name: Run Dragon Script
-        run: wsl -d Ubuntu "${{ github.workspace }}/dragon.sh"
+      - name: Make dragon.sh executable and run it
+        run: |
+          wsl -d Ubuntu bash -c "chmod +x ~/$(basename '${{ github.workspace }}')/dragon.sh && ~/$(basename '${{ github.workspace }}')/dragon.sh"
         shell: powershell
