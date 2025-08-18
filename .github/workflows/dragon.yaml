@@ -16,8 +16,10 @@ jobs:
 
       
 
-      - name: Make dragon.sh executable and run it
-        run: |
-          $wslPath = "${{ github.workspace }}".Replace('\', '/').Replace('C:', '/mnt/c')
-          wsl -d Ubuntu bash -c "chmod +x '$wslPath/dragon.sh'; '$wslPath/dragon.sh'"
+      - name: Make dragon.sh executable
+        run: wsl -d Ubuntu "chmod +x /mnt/c/Users/ibrah/Desktop/Sprints-Devops/Week-5/second/actions-runner/_work/Self-Hosted-Runner-Cowsay/Self-Hosted-Runner-Cowsay/dragon.sh"
+        shell: powershell
+
+      - name: Run Dragon Script
+        run: wsl -d Ubuntu "/mnt/c/Users/ibrah/Desktop/Sprints-Devops/Week-5/second/actions-runner/_work/Self-Hosted-Runner-Cowsay/Self-Hosted-Runner-Cowsay/dragon.sh"
         shell: powershell
