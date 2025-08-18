@@ -14,12 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      
-
-      - name: Make dragon.sh executable
-        run: wsl -d Ubuntu "chmod +x /mnt/c/Users/ibrah/Desktop/Sprints-Devops/Week-5/second/actions-runner/_work/Self-Hosted-Runner-Cowsay/Self-Hosted-Runner-Cowsay/dragon.sh"
-        shell: powershell
-
-      - name: Run Dragon Script
-        run: wsl -d Ubuntu "/mnt/c/Users/ibrah/Desktop/Sprints-Devops/Week-5/second/actions-runner/_work/Self-Hosted-Runner-Cowsay/Self-Hosted-Runner-Cowsay/dragon.sh"
+            
+      - name: Run dragon script
+        run: |
+          $wslPath = "${{ github.workspace }}".Replace('\', '/').Replace('C:', '/mnt/c')
+          $command = @"
+          chmod +x '$wslPath/dragon.sh'
+          '$wslPath/dragon.sh'
+          "@
+          wsl -d Ubuntu bash -c "$command"
         shell: powershell
