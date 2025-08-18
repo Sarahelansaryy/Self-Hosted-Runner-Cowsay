@@ -20,8 +20,10 @@ jobs:
           $filePath = "${{ github.workspace }}/dragon.sh"
           (Get-Content $filePath -Raw).Replace("`r`n","`n") | Set-Content $filePath -NoNewline
 
-      - name: Run dragon script
+      - name: Run dragon script with output
         run: |
           $wslPath = "${{ github.workspace }}".Replace('\', '/').Replace('C:', '/mnt/c')
-          wsl -d Ubuntu bash -c "chmod +x '$wslPath/dragon.sh' && '$wslPath/dragon.sh'"
+          $output = wsl -d Ubuntu bash -c "chmod +x '$wslPath/dragon.sh' && '$wslPath/dragon.sh'"
+          Write-Output "Script output:"
+          Write-Output $output
         shell: powershell
