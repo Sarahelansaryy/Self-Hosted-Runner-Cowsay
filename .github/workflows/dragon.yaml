@@ -18,9 +18,10 @@ jobs:
       - name: Run dragon script
         run: |
           $wslPath = "${{ github.workspace }}".Replace('\', '/').Replace('C:', '/mnt/c')
-          $command = @"
-          chmod +x '$wslPath/dragon.sh'
-          '$wslPath/dragon.sh'
-          "@
-          wsl -d Ubuntu bash -c "$command"
+          wsl -d Ubuntu bash -c "
+            # Ensure execute permissions
+            chmod +x '$wslPath/dragon.sh'
+            # Execute the script
+            '$wslPath/dragon.sh'
+          "
         shell: powershell
