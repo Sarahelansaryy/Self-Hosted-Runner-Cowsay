@@ -18,5 +18,6 @@ jobs:
 
       - name: Make dragon.sh executable and run it
         run: |
-          wsl -d Ubuntu bash -c "chmod +x ~/$(basename '${{ github.workspace }}')/dragon.sh && ~/$(basename '${{ github.workspace }}')/dragon.sh"
+          $wslPath = "${{ github.workspace }}".Replace('\', '/').Replace('C:', '/mnt/c')
+          wsl -d Ubuntu "chmod +x '$wslPath/dragon.sh' && '$wslPath/dragon.sh'"
         shell: powershell
