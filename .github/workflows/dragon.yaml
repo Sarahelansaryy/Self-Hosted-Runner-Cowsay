@@ -1,0 +1,27 @@
+name: Dragon CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  
+
+jobs:
+  ASCII-job:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Dragon Script
+        run: .\dragon.ps1
+        shell: powershell
+
+      - name: Show dragon script content
+        run: Get-Content .\dragon.ps1
+        shell: powershell
+
+      - name: List files
+        run: dir
+        shell: powershell
