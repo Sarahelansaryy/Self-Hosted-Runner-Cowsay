@@ -14,14 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-            
       - name: Run dragon script
         run: |
+          # Convert path and fix line endings
           $wslPath = "${{ github.workspace }}".Replace('\', '/').Replace('C:', '/mnt/c')
           wsl -d Ubuntu bash -c "
-            # Ensure execute permissions
+            # Convert Windows line endings to Unix
+            sed -i 's/\r$//' '$wslPath/dragon.sh'
             chmod +x '$wslPath/dragon.sh'
-            # Execute the script
             '$wslPath/dragon.sh'
           "
         shell: powershell
