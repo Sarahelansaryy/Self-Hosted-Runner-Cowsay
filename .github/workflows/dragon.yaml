@@ -14,14 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      
+      - name: Convert line endings
+        run: |
+          $filePath = "${{ github.workspace }}/dragon.sh"
+          (Get-Content $filePath -Raw).Replace("`r`n","`n") | Set-Content $filePath -NoNewline
+
       - name: Run dragon script
         run: |
-          # Convert path and fix line endings
           $wslPath = "${{ github.workspace }}".Replace('\', '/').Replace('C:', '/mnt/c')
-          wsl -d Ubuntu bash -c "
-            # Convert Windows line endings to Unix
-            sed -i 's/\r$//' '$wslPath/dragon.sh'
-            chmod +x '$wslPath/dragon.sh'
-            '$wslPath/dragon.sh'
-          "
+          wsl -d Ubuntu bash -c "chmod +x '$wslPath/dragon.sh' && '$wslPath/dragon.sh'"
         shell: powershell
