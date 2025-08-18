@@ -14,10 +14,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Make dragon.sh executable
-        run: wsl -d Ubuntu "cd /mnt/c/Users/ibrah/Desktop/Sprints-Devops/Week-5/second/actions-runner/_work/Self-Hosted-Runner-Cowsay/Self-Hosted-Runner-Cowsay && chmod +x ./dragon.sh"
+      - name: Install cowsay in WSL
+        run: |
+          wsl -d Ubuntu sudo apt update
+          wsl -d Ubuntu sudo apt install cowsay -y
         shell: powershell
 
+      # Step 3: Make the script executable inside WSL
+      - name: Make dragon.sh executable
+        run: wsl -d Ubuntu "chmod +x ${{ github.workspace }}/dragon.sh"
+        shell: powershell
+
+      # Step 4: Run the script inside WSL
       - name: Run Dragon Script
-        run: wsl -d Ubuntu "cd /mnt/c/Users/ibrah/Desktop/Sprints-Devops/Week-5/second/actions-runner/_work/Self-Hosted-Runner-Cowsay/Self-Hosted-Runner-Cowsay && ./dragon.sh"
+        run: wsl -d Ubuntu "${{ github.workspace }}/dragon.sh"
         shell: powershell
