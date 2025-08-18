@@ -13,13 +13,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-        
+
       - name: Make dragon.sh executable
-        run: wsl -d Ubuntu chmod +x ./dragon.sh
+        run: wsl -d Ubuntu "cd ${{ github.workspace }} && chmod +x ./dragon.sh"
         shell: powershell
 
       - name: Run Dragon Script in WSL
-        run: wsl -d Ubuntu ./dragon.sh
+        run: wsl -d Ubuntu "cd ${{ github.workspace }} && ./dragon.sh"
 
         shell: powershell
 
