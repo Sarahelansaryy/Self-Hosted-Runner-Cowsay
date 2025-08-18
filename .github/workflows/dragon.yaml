@@ -17,6 +17,7 @@ jobs:
         run: chmod +x ./dragon.sh
         shell: bash
       - name: Run Dragon Script in WSL
-        run: wsl ./dragon.sh
+        run: wsl -d Ubuntu ./dragon.sh
+
         shell: powershell
 
