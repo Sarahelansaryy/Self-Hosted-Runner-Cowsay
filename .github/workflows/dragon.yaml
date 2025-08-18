@@ -14,11 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Install cowsay in WSL
-        run: |
-          wsl -d Ubuntu sudo apt update
-          wsl -d Ubuntu sudo apt install cowsay -y
-        shell: powershell
+      
 
       # Step 3: Make the script executable inside WSL
       - name: Make dragon.sh executable
