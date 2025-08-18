@@ -14,8 +14,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
       - name: Make dragon.sh executable
-        run: chmod +x ./dragon.sh
-        shell: bash
+        run: wsl -d Ubuntu chmod +x ./dragon.sh
+        shell: powershell
+        
       - name: Run Dragon Script in WSL
         run: wsl -d Ubuntu ./dragon.sh
 
