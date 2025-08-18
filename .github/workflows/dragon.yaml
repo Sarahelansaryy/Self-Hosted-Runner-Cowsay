@@ -13,6 +13,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Run Dragon 
-        run: bash ./dragon.sh
+      - name: Run Dragon Script
+        run: .\dragon.ps1
+        shell: powershell
