@@ -15,4 +15,4 @@ cd C:\path\to\actions-runner
 ```bash
 ./run.sh
 ```
-# Stop - press Ctrl+C in the same terminal
+## Stop - press Ctrl+C in the same terminal
